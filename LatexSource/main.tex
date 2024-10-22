@@ -1,0 +1,199 @@
+% !TeX spellcheck = en_US
+\documentclass[AIRphdthesis%          style
+              ,optCharter%            font
+              %,optCMYK%              color model
+              ,optBiber% 			  bibliography tool
+              ,optBibstyleAlphabetic% bibliography style
+              ,optCenterEquations%    alignment of equations
+              ,optEnglish% 		      language
+              %,optTikzExternalize%   compiles faster for large tikz images
+              %,optExzellenz%
+              ]{AIRlatex}%
+%
+% Load additional LaTeX packages
+\usepackage{booktabs}%
+\usepackage{enumerate}%
+%
+
+%%%%%%%%%%%%%%Hadi
+\usepackage{amsmath,amsfonts}
+%\usepackage{algorithmic}
+%\usepackage{algorithm}
+\usepackage{array}
+\usepackage[caption=false,font=normalsize,labelfont=sf,textfont=sf]{subfig}
+\usepackage{textcomp}
+\usepackage{stfloats}
+\usepackage{url}
+\usepackage{verbatim}
+\usepackage{todonotes}
+%\usepackage[noend]{algpseudocode}
+\usepackage{graphicx}
+%%%HadiADDED
+\usepackage{rotating}
+\usepackage{longtable}
+\usepackage{makecell}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{float}
+\usepackage{algorithmic}
+\usepackage{soul}
+
+\usepackage{hyperref}
+
+\usepackage{tikz}
+\usepackage{pgfplots} 
+\usepackage{mathrsfs}
+%%%******************************************
+\usepackage{rotating}
+\usepackage{graphicx}
+\usepackage{textcomp}
+\usepackage{xcolor}
+\def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
+    T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
+%%
+\usepackage[final]{listings}
+\lstset{
+  language=Java,
+  numbers=left,   
+  xleftmargin=2em,
+  frame=single,   
+  captionpos=b,
+  basicstyle=\ttfamily\scriptsize,
+  breaklines=true,
+  tabsize=3,
+  numberbychapter=false,
+  keywordstyle=\bfseries\color{blue}
+}
+\usepackage{pgf-umlcd}
+%\usepackage[caption=false, font=footnotesize]{subfig}
+%%**********************************************************
+
+
+
+
+
+
+\usepackage{rotating}
+
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\usepackage{listings}
+\lstset{frame=tb,
+  language=Java,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=3
+}
+
+%%%--------------------------------
+%\usepackage{algorithm2e}
+\usepackage{xcolor}
+\usepackage[linesnumbered,ruled,lined]{algorithm2e}
+%\usepackage[catalan]{babel}
+%\usepackage[english,russian,main=french]{babel}
+\usepackage{float}
+%\usepackage{cite}
+\hyphenation{op-tical net-works semi-conduc-tor IEEE-Xplore}
+% updated with editorial comments 8/9/2021
+%%%%%%%%%%%%%%%%
+% T Start
+%%%%%%%%%%%%%%%%
+\usepackage{pgfgantt}
+\usepackage{pgfplots} 
+\pgfplotsset{compat=1.12}
+\usepackage{multirow}
+\definecolor{col1}{RGB}{199, 233, 180}
+\definecolor{col2}{RGB}{29, 145, 192}
+
+\definecolor{col_1}{RGB}{105,176,234}
+\definecolor{col_2}{RGB}{255,66,68}
+\definecolor{col_3}{RGB}{97,195,94}
+
+\usepackage{adjustbox}
+\usepackage{booktabs}
+
+
+\usepackage{afterpage}
+
+\newcommand\blankpage{%
+    \null
+    \thispagestyle{empty}%
+    \addtocounter{page}{-1}%
+    \newpage}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Set paths
+\graphicspath{{figures/}}%
+\addbibresource{source/literature.bib}%
+%
+% Define additional commands
+\newcommand{\code}[1]{\texttt{#1}}%
+\newcommand{\degree}[0]{^\circ}%
+%
+\begin{document}%
+% Titlepage
+% ---------
+\frontmatter%
+\AIRphdthesisTitlePageCustomMaleExaminer%
+%\RAIphdthesisTitlePage%
+{A Framework to Design and Synthesize Vehicle E/E Architecture}%
+{}%
+{Hadi Askaripoor, M.Sc.}%
+%{\RAIlangPhdDegreeDrRerNat}%
+{\AIRlangPhdDegreeDrRerNat}%
+{Prof. Dr.-Ing Jörg Ott}%
+%{Prof. Dr.-Ing Jorg Ott}	          First examiner
+{\AIRnamesProfKnoll}%
+{Prof. Dr. Ali Mosleh (University of California, Los Angeles) }% 			                  Second examiner
+{\AIRutilsDate{14}{12}{2023}}% 	  Submission date
+{\AIRutilsDate{11}{09}{2024}}%      Acceptance date
+%
+% Abstract
+% --------
+\include{source/abstract}%
+
+%
+% Content
+% -------
+\AIRphdthesisPrintTableOfContents%
+\listoffigures
+\listoftables
+\listofalgorithms
+\mainmatter%
+\include{source/chapter01}%
+\include{source/chapter003}%
+\include{source/chapter02}%
+\include{source/chapter03}%
+\include{source/chapter004}%
+\include{source/chapter04}%
+\include{source/chapter05}%
+\include{source/chapter06}%
+%
+% Appendix
+% --------
+\appendix%
+\include{source/appendix}%
+%
+% References
+% ----------
+{%
+    %\sloppy% "Word"-like typesetting in order to improve breaking lines with long URLs/DOIs
+    \printbibliography[heading=bibintoc]%
+}%
+%
+%
+\end{document}%
+%
+%

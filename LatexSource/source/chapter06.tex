@@ -1,0 +1,208 @@
+\chapter{Conclusion and Future Work}\label{conclusion}%
+
+    %In recent years, with the increasing level of vehicle automation, such as ADAS, the demand for computational power in vehicle ECUs has grown dramatically. Currently, cars are equipped with anywhere from 70 to 100 ECUs to manage their software systems \cite{pelliccione2017automotive}.
+    
+    
+     %The complexity and variety of required applications in today's vehicles have substantially increased, especially with the inclusion of ADAS and automated driving features. Meeting both non-safety and safety requirements in compliance with automotive standards, such as ISO 26262~\cite{iso26262} and SOTIF~\cite{sotif}, during the design and configuration of automotive architecture has increased complexity. This complexity arises from the integration of new applications and features into the vehicles and the limitations of traditional E/E architectures~\cite{askaripoor2022architecture,askaripoor2023designer,9613692}. 
+     
+     The demand for applications in modern vehicles has grown significantly, primarily due to the integration of ADAS and automated driving technologies. To ensure that automotive designs meet both safety and non-safety criteria in accordance with established standards like ISO 26262 and SOTIF~\cite{iso26262, sotif}, designers face increasingly intricate challenges when configuring automotive architectures. This complexity stems from the need to seamlessly integrate new applications and features into vehicles while working within the confines of conventional E/E architectures~\cite{askaripoor2022architecture,askaripoor2023designer,9613692}.
+     
+     
+     %Consequently, the vehicle E/E architecture has been evolving recently concerning the aforementioned complexity as described in section~\ref{eeArch}.
+     %Therefore, developing an E/E architecture with ADAS functionalities and algorithms that meets all safety-related (e.g., timing, freedom from interference (FFI), and redundancy) and non-safety-related requirements is a laborious and time-consuming task that requires domain-specific knowledge~\cite{9565115,9212001}. Manually integrating and configuring the software architecture for an automotive HPCU is challenging and prone to errors, given the need to fulfill various hardware, application, OS, middleware, and hypervisor requirements and properties. The same applies to configuring an automotive communication network, which must ensure reliable data transmission for safety-critical ADAS applications. These configuration syntheses can be optimized for multiple goals, comprising power consumption, resource utilization, reliability, bandwidth usage, temperature, cost, response time, end-to-end latency, and more~\cite{askaripoor2022architecture,9212001,askaripoor2023designer}. 
+    
+    
+    Developing an E/E architecture with ADAS functionalities and algorithms that not only fulfill safety-related aspects like timing, FFI, and redundancy but also meet various non-safety-related requirements is a demanding and time-consuming endeavor. This task requires a deep understanding of the specific domain~\cite{9565115,9212001}.
+    The manual integration and configuration of a software architecture for an automotive HPCU pose considerable challenges and are susceptible to errors. This complexity arises from the need to align with many hardware, application, OS, middleware, and hypervisor prerequisites and attributes. The same level of intricacy applies to an automotive communication network setup, which must guarantee secure data transmission for safety-critical ADAS applications.
+    In addition, synthesizing these configurations can be optimized for various objectives. These goals encompass minimizing power consumption, efficient resource utilization, enhanced reliability, bandwidth optimization, temperature control, cost efficiency, response time, end-to-end latency, and more~~\cite{askaripoor2022architecture,9212001,askaripoor2023designer}. The following sections summarize the key contributions of this thesis and provide perspectives on the limitations of this thesis and future work.
+    
+    
+    
+    
+    
+    %A significant amount of data must be transmitted over the in-vehicle communication network to support new infotainment and driver assistance features~\cite{askaripoor2023designer}. However, reliable transmission is crucial when vehicles rely on network messages to make safety-critical decisions. Low latency, and in some cases, deterministic message transmission with accurate schedules for each communication frame are also necessary to meet the demands of real-time applications~\cite{9212001,askaripoor2023designer}.
+   
+    %Additionally, as the number of hardware and software components continues to grow within the vehicle E/E system, along with their corresponding requirements and properties, the task of finding the ideal configuration synthesis and solutions for specified problems, e.g., mapping problem, becomes increasingly complex for system architects, and the need to have a new update in the configuration might lead to unknown risks and become costly. For example, Fig.~\ref{fig012} presents a brief overview of the manual process of vehicle E/E architecture synthesis performed by a system integrator. The system integrator must consider the software model specifications that will be deployed on the car's E/E system, including applications and their requirements, OS and middleware, and virtualization technologies (e.g., hypervisors)\cite{askaripoor2022architecture}. Moreover, as shown in Fig.~\ref{fig012}, the system architect must take into account the E/E system components and their properties, comprising HPCU, communication protocols, ECUs, sensors, and actuators. This holistic approach is necessary to generate a correct configuration synthesis that fulfills all predefined requirements and optimization objectives.
+
+
+
+
+
+
+
+
+    \section{Summary}
+
+    %In this thesis, the following two research questions are addressed. The result for each question is summarized as below. Before tackling these questions, a comprehensive analysis of current approaches and frameworks/tools for synthesizing vehicle E/E systems and embedded systems are performed in Chapter~\ref{sota}.  
+    
+    This thesis addresses two research questions, and the results for each question are summarized below. Before delving into these questions, a comprehensive analysis of current approaches and frameworks/tools for synthesizing vehicle E/E systems and embedded systems is performed in Chapter~\ref{sota}.
+    
+    
+    
+    \begin{itemize}
+        \item How to facilitate design and synthesis of E/E architectures?
+          \end{itemize}
+        %To address this question, a novel model-based framework called \textit{E/E Designer} is presented to model and synthesize automotive E/E architectures. The framework enables users to model mixed-critical networks, providing automated mapping of applications, calculating schedules for mapped application threads on different ECUs, processors, and cores, creating valid paths for communication messages between senders and receivers (including single, multicast, redundant, and homogeneous redundant routings), and computing schedules for communication tasks routing over network links while considering massage and path dependencies. The proposed tool also supports and facilitates modeling hypervisors covering their two types by considering different requirements and constraints, as explained in Chapter~\ref{method}.   
+        To address this question, a novel model-based framework called E/E Designer is presented for modeling and synthesizing automotive E/E architectures. The framework enables users to model mixed-critical networks, providing automated mapping of applications, calculating schedules for mapped application threads on different ECUs, processors, and cores, creating valid paths for communication messages between senders and receivers (including single, multicast, redundant, and homogeneous redundant routings), and computing schedules for communication tasks routing over network links while considering message and path dependencies. The proposed tool also supports and facilitates modeling hypervisors, covering both types by considering different requirements and constraints, as explained in Chapter~\ref{method}.
+        %It also supports various safety requirements, such as ASIL, redundancy, FFI, and reliability. These requirements are considered during configuration process including message routing. For example, considering the failure rates of components, the reliability of each communication route can be calculated and hence, the most reliable path can be selected to route messages from senders to receivers.   
+        It also supports various safety requirements, such as ASIL, redundancy, FFI, and reliability. These requirements are considered during the configuration process, which includes resource allocation and message routing. For example, considering the failure rates of components, the reliability of each communication route can be calculated; hence, the most reliable path can be selected to route messages from senders to receivers.
+        
+        
+        
+        %The framework takes various boundary goals and optimization objectives into account for the designed model, including end-to-end latency, response time, resource utilization (including maximum resource usage, memory, and ECU), load balancing in vehicle communication network (comprising LOR and maximum bandwidth utilization), reliability for single and redundant paths, and CR. In addition, the introduced tool supports multi-objective optimization using hierarchical approach. This approach assigns priority to each objective and optimization is performed by considering objectives in descending order of priority.
+        
+        The presented framework considers a range of boundary goals and optimization objectives for the designed model, including end-to-end latency, response time, resource utilization (including maximum resource usage, memory, and ECU), load balancing in the vehicle communication network (comprising LOR and maximum bandwidth utilization), reliability for single and redundant paths, and CR. Additionally, the introduced tool supports multi-objective optimization using a hierarchical approach. This approach assigns priority to each objective, and optimization is performed by considering objectives in descending order of priority.
+        
+        
+         %As illustrated in Chapter~\ref{method}, MIP is used to transform the requirements, boundary goals, and optimization objectives into constraints. Furthermore, an approach is utilized to allow solving all constraint sets for mapping, application threads scheduling, message routing, and communication tasks scheduling throughout the entire optimization run in a single step. This single-step approach reduces the solving time and respects the interrelations between the specified constraint decisions. In addition, the proposed tool benefits from a web-based frontend where users can model their desired E/E systems and select various hardware and software requirements and properties as well as aforementioned boundary and optimization goals. Also, the developed frontend visualizes the solution of their designed system after its solving, as described in Chapter~\ref{frontend}.
+         
+         
+         As illustrated in Chapter~\ref{method}, the proposed framework utilizes an object-oriented metamodel following MDD methodology. This metamodel is the foundation for graphical
+         modeling, which the E/E system integrator or modeler uses to create graphical model instances. 
+         Using a formal system metamodel, the graphical model instances, which include the requirements, boundary goals, and optimization objectives, are transformed into MIP constraints.
+         Furthermore, an approach is employed to solve all constraint sets for mapping, application thread scheduling, message routing, and communication task scheduling in a single optimization run. This single-step approach reduces the solving time and maintains the interrelations between the specified constraint decisions. Moreover, the proposed tool offers a web-based frontend that allows users to model their desired E/E systems and select various hardware and software requirements and properties, along with the aforementioned boundary and optimization goals. The developed frontend also visualizes the solution of the designed system after it has been solved, as described in Chapter~\ref{frontend}.
+         
+         
+         
+
+          %The performance of the model-based tool is assessed using three methods: a design-time evaluation, where the solving and generation times of constraint sets in different scenarios are evaluated, including a scalability analysis, a run-time evaluation, where the solution is deployed on an experimental setup, and quantitative and qualitative evaluation, where the performance, usability, and practicality of the E/E Designer are assessed by addressing a series of use cases through both manual and automated approaches.The design-time experiments show that our formulations scales to systems with reasonably large size. In the course of the run-time experiments, it was noted that there were no instances of timing deadline breaches following the deployment of the design-time solutions on an experimental configuration. The evaluation part was explained in Chapter~\ref{eval}.
+        
+        
+          The performance of the model-based tool is assessed using three methods: a design-time evaluation, where the solving and generation times of constraint sets in different scenarios are evaluated, including scalability analysis; a run-time evaluation, where the solution is deployed on an experimental setup; and quantitative and qualitative evaluation, where the performance, usability, and practicality of the E/E Designer are assessed by addressing a series of use cases through both manual and automated approaches.
+          The design-time experiments show that our formulations scale to systems with reasonably large sizes. During the run-time experiments, it was noted that there were no instances of timing deadline breaches following the deployment of the design-time solutions on an experimental setup. The evaluation is explained in Chapter~\ref{eval}.   
+        
+        
+        
+       \begin{itemize}
+        \item How to simplify analysis of design errors in E/E architecture?
+       \end{itemize} 
+       
+        %To address this question, an approach, namely design error analysis, is introduced, as depicted in Chapter~\ref{designerror}. This approach focuses on situations where a designed E/E architecture is not satisfiable, which means that feasible solutions cannot be found by the solver. Unlike simple models, navigating and correcting the unsatisfiability of complex E/E models is an intricate and time-consuming task, leading to increased development costs. To address this issue, the design error analysis approach is introduced to identify design errors when violations occur in the constraint set included in the system model after the solving step. This feature is crucial for detecting and rectifying errors in the system design within a reasonable timeframe, ensuring that the system is optimized and meets all necessary constraints and requirements. 
+        
+        To address this question, an approach, called design error analysis, is introduced, as depicted in Chapter~\ref{designerror}. This approach focuses on situations where a designed E/E architecture is not satisfiable, meaning that the solver cannot find feasible solutions. Unlike simple models, navigating and correcting the unsatisfiability of complex E/E models is a complex and time-consuming task, which leads to increased development costs. To tackle this issue, the design error analysis approach is introduced to identify design errors when violations occur in the constraint set included in the system model after the solving step. This feature is crucial for detecting and rectifying errors in the system design within a reasonable timeframe, ensuring that the system is optimized and meets all necessary constraints and requirements.
+        
+        
+        %Two methods are used and evaluated, including IIS and Marco algorithm, to apply the introduced approach. As the proposed framework includes MIP constraints and utilizes the Gurobi optimizer, the IIS method is preferred over the MARCO algorithm due to both the implementation effort involved and the effectiveness of the Gurobi solver in solving MIP problems.
+        
+        Two methods are used and evaluated, which include the IIS and Marco algorithms, to apply the introduced approach. Since the proposed framework incorporates MIP constraints and utilizes the Gurobi optimizer, the IIS method is preferred over the MARCO algorithm. This preference is based on the implementation effort required and the effectiveness of the Gurobi solver in handling MIP problems.
+
+    %In this paper, we first presented car E/E architecture evolution during the last few years and illustrated the current bottlenecks of E/E architecture as well as the major technologies for the future of vehicle architecture comprising software architecture of the high-performance computing unit (HPCU). Moreover, we expressed the challenges and technologies related to automotive software integration and deployment to the HPCU, including task mapping and software frameworks and approaches for software configuration in the design process. The current approaches and techniques for static and dynamic task mapping in multi-core processors using the design space exploration (DSE) method were discussed. In addition, the current optimization parameters in task mapping to boost the quality of the task assignment were identified. We went through the current existing technologies and approaches, dividing them into open-source and commercial, relevant to modeling, model analysis and checking, and solving the mapping problem, including the optimization goals for vehicle E/E architecture and multi-core processors. We depicted the strengths and limitations of each framework while we compared the open-source technologies by providing two tables covering various attributes such as the problem attribute, DSE method, safety-related attributes, optimization parameters, etc., which have been covered by each. Finally, we proposed our research questions as future research areas based on our analysis and study focused on the mapping of the software elements to automotive HPCUs which can be utilized by other researchers. There are several other topics such as description languages and verification platforms for the synthesis of the E/E systems which are relevant to the content of this paper; however, they are out of the scope of this paper. In this paper, we have proposed a novel model-based
+    %framework, namely \textit{E/E Designer}, to model and synthesize automotive E/E architectures. The users can not only model their desired automotive mixed-critical networks, including model checking, but also synthesize the model supporting automated applications assignment satisfying predefined requirements, calculation of schedules for mapped threads on different ECUs, processors, and cores, creation of valid paths for communication messages between senders and receivers including single, redundant, homogeneous redundant and multicast routings, and computation of schedules for communication tasks routing over network links. In addition, it supports various safety requirements such as automotive safety integrity level (ASIL), redundancy, and freedom from interference (FFI). This framework also enables optimization of the designed model supporting multi-objective optimization comprising end-end latency, response time, resource usage, link occupation rate, and cost. We used integer linear programming (ILP) to transform the requirements into constraints. In addition, we utilized an approach that allows us to solve all constraint sets for mapping, thread scheduling, message routing, and communication task scheduling throughout the entire optimization run in a single step, and therefore respects the interrelations between the specified constraints decisions and reduces the solving time. Finally, we evaluated the performance of \textit{E/E Designer} by proposing two methods. The first method is a design-time evaluation where we assessed the solving and generation times of constraint sets in a single step on different scenarios. While in the second method, we evaluated the \textit{E/E Designer} solutions in run-time by deploying the solution on an experimental setup.  
+    
+    
+    \section{Limitations}\label{limit}
+    
+    \subsection{Constraints Formulation}
+    In this thesis, logical requirements and properties are automatically generated from the graphical model and metamodel definitions. Also, the specified problems, converted into MIP constraints, are acquired from analyzing the defined E/E system database. However, the existing problems, boundary and optimization objectives do not cover all possible problems, scenarios, and optimization goals related to vehicle E/E architecture, including real-time and mixed-critical systems.
+    Formulation of problems and goals for synthesizing the modeled E/E systems (which can comprise various scheduling schemes and other hardware/software requirements) requires
+    a background in logic programming; in other words, the E/E system integrator must have knowledge about MIP in order to develop and add new problems and optimizations goals to the current system model. Therefore, this framework does not use specific modeling-based languages such as object constraint language (OCL)~\cite{warmer2003object} and AADL or any other modeling-based languages to define the problems. However, these languages have their limitations in defining various problems. 
+    
+    
+    \subsection{Verification}
+    
+    %Moreover, the current implementation only allowsfor generating E/E system knowledge database from a graphically created model, but not the other way around. The implementation of a model generation in both directions is required to increase the automation level of model capturing and modificationsat run-time.
+    
+    As explained in Chapter~\ref{method}, the developed tool, as a modular framework, uses Eclipse modeling framework, Sirius Web, and Gurobi optimizer as software artifacts.
+    These software modules are utilized for the synthesis of E/E systems, which include safety requirements as depicted in Chapter~\ref{method}.
+    The quality and correctness of the synthesis results depend highly on the correct implementation of
+    these software modules. Verification of the software components directly impacts
+    the certification of the safety-relevant parts of the model configured using the
+    framework. Ada programming language~\cite{barnes1984programming} can be considered in the context of formal verification. Ada is known for its strong support of formal methods and formal verification. Ada's type system and design principles make it more amenable to formal verification techniques. However, using Ada depends on whether that can fit into the system model and if it is necessary to be used in the context of E/E architecture synthesis.  
+     %the schedule of hard, real-time streams which may have safety relevance. 
+     %The developed framework is modular and exploits existing software artifacts such as Z3solver, Eclipse modeling framework, etc. 
+    \subsection{Placement of E/E Components}\label{placement}
+    
+    Modeling the positioning of E/E components in a car's body is important in terms of cost, safety-criticality, wiring harness design, thermal management, and overall performance. However, the introduced computer-aided tool does not support the exact placement of E/E components in the car, considering the size of the car's body. This can assist E/E system architects in calculating and predicting various parameters such as wiring harness, material usage, overheating of components, electromagnetic interference, damage to ECUs in case of crash, etc.
+    
+    
+    %Proper placement of E/E components helps minimize the length of wiring harnesses. Shorter harnesses reduce material usage, which can lead to cost savings.Reduced harness complexity and simplified assembly lead to cost-efficient manufacturing processes. Accurate placement of safety-critical E/E components is vital to ensure their proper operation. Proper positioning helps prevent electromagnetic interference, overheating, and damage, which can impact the safety of the vehicle.
+     
+    %Optimal placement ensures that wiring harnesses are routed efficiently, reducing complexity and the likelihood of signal interference.Proper placement minimizes signal propagation delays and the risk of signal degradation or electromagnetic interference. Effective modeling takes into account the dissipation of heat from E/E components. Proper positioning can help avoid overheating issues, ensuring long-term reliability.
+     
+     %Ensuring that high-performance control units (HPCUs) are positioned to minimize signal latency and facilitate efficient data flow for advanced features.
+     
+      %ECUs related to safety-critical systems (e.g., airbag deployment) require careful positioning to ensure that they operate reliably and are protected from damage in case of a collision.
+      
+      
+      %When modeling the placement of ECUs, factors to consider include accessibility for maintenance, temperature control, proximity to the systems they control, electromagnetic interference (EMI) considerations, and protection from physical damage.
+      
+      %ECUs related to safety-critical systems (e.g., airbag deployment) require careful positioning to ensure that they operate reliably and are protected from damage in case of a collision.
+     %Proper modeling and placement of ECUs and HPCUs are essential for ensuring the optimal operation of a vehicle's electrical and electronic systems, as well as the safety and performance of advanced features such as ADAS and autonomous driving. Careful consideration of the factors mentioned above is vital in the design process.
+    
+    \subsection{Design Error Analysis}
+    
+    The presented design error analysis approach for finding the source of system model unsatisfiability contains the information that aids in navigating the origin of violation in the set of constraints and reduces time and complexity. In other words, the most critical constraints, which have caused the model infeasibility, are weighted based on their criticality level.
+    
+    However, this approach does not create any explanations or correcting recommendations or proposals.
+    There is also no guarantee of how many iterations are required to achieve the satisfiability
+    of the E/E model. The number of iterations depends on the correction actions and
+    modifications of the model. Incorrect modifications can also cause more conflicting constraints. Hence, knowledge of E/E systems and understanding of defined problems are required to derive
+    adequate modifications in the designed model. 
+    
+    
+    
+    \section{Future Works}
+    
+    
+    \subsection{New Requirements and Features}
+    
+    
+    %As future work, new problems, safety requirements, and optimization goals can be added to the current system model of the framework. For instance, new scheduling schemes such as priority-based scheduling, event-triggered scheduling, earliest deadline first (EDF), rate monotonic (RM) scheduling, etc, can be integrated into the tool to cover more scheduling possibilities for applications threads and communication tasks. In addition, the level of application and hardware can be extended in the modeling and synthesizing of the E/E architectures, meaning that more details comprising requirements and properties can be added to the current model of hardware and software components, e.g., application, thread, hypervisor, ECU, HPCU, switch, gateway, etc. 
+    
+    As part of future work, additional challenges, safety requirements, and optimization objectives can be incorporated into the existing system model of the framework. For example, new scheduling schemes, such as priority-based scheduling, event-triggered scheduling, earliest deadline first (EDF), rate monotonic (RM) scheduling, and others, can be seamlessly integrated into the tool. This expansion will provide a more comprehensive coverage of scheduling possibilities for application threads and communication tasks.
+    Furthermore, there is potential for an increased level of granularity in the modeling and synthesis of E/E architectures. This means that more intricate details, encompassing additional requirements and properties, can be included in the current hardware and software components model. This extension may encompass various elements such as applications, threads, hypervisors, ECUs, HPCUs, switches, gateways, etc.
+    
+    
+    
+    
+    
+    
+    %Furthermore, the capability to place and configure E/E components, e.g., ECUs, switches, wiring harness, connectors, and HPCUs, in the car's body according to standard body size of vehicles helps engineers determine the optimal locations for components within the vehicle and configure their settings, as mentioned in \ref{placement}.  Besides, it can provide an estimation for vehicle wiring harness in terms of length, weight, type, space, cost, connector types, voltage and current rating, etc. 
+    
+    
+     The ability to position and configure E/E components such as ECUs, switches, wiring harnesses, connectors, and HPCUs within a vehicle's body, taking into account standard vehicle dimensions, assists engineers in determining the optimal component locations and configurations, as discussed in Subsection \ref{placement}. This process can also generate estimates for various aspects of the vehicle's wiring harness, including its length, weight, type, required space, cost, connector types, voltage and current ratings, and more.
+    Proper placement of E/E components helps minimize the length of wiring harnesses. Shorter harnesses reduce material usage, which can lead to cost savings.
+    Reduced harness complexity and simplified assembly lead to cost-efficient manufacturing processes. Accurate placement of safety-critical E/E components is vital to ensure their proper operation, and proper positioning helps prevent electromagnetic interference, overheating, and damage, which can impact the vehicle's safety. Optimal placement ensures that wiring harnesses are routed efficiently, reducing complexity and the likelihood of signal interference.
+    It also minimizes signal propagation delays and the risk of signal degradation or electromagnetic interference. Effective modeling considers heat dissipation from E/E components and can help avoid overheating issues, ensuring long-term reliability. Furthermore, the positioning of HPCUs must be ensured to minimize signal latency and facilitate efficient data flow for advanced features. The same condition is applied to ECUs related to safety-critical systems (e.g., airbag deployment), which require careful positioning to ensure that they operate reliably and are protected from damage in case of a collision.
+    
+    
+    
+    %Proper placement of E/E components helps minimize the length of wiring harnesses, resulting in shorter harnesses and reduced material usage. This reduction can lead to cost savings. Moreover, it simplifies assembly processes, contributing to cost-efficient manufacturing.Accurate placement of safety-critical E/E components is vital to ensure their proper operation. Proper positioning not only helps prevent issues such as electromagnetic interference, overheating, and damage but also safeguards the safety of the vehicle.Optimal placement ensures wiring harnesses are efficiently routed, reducing complexity and minimizing the likelihood of signal interference. This also minimizes signal propagation delays and mitigates the risk of signal degradation or electromagnetic interference.Effective modeling considers the dissipation of heat from E/E components, which is crucial in preventing overheating issues and ensuring long-term reliability.Furthermore, the positioning of HPCUs must be carefully planned to minimize signal latency and facilitate efficient data flow for advanced vehicle features.The same principle applies to ECUs associated with safety-critical systems, such as airbag deployment. Careful positioning is necessary to ensure reliable operation and protection from damage, particularly in the event of a collision.
+   
+    
+          
+    
+    \subsection{Run-time E/E Configurator}
+    
+    %The developed framework only considered the design phase for modeling and synthesizing car E/E systems. Nonetheless, the idea of synthesizing the E/E systems in run-time is innovative and useful. Various perspectives and requirements must be considered to achieve this goal. This idea applies when OTA or update over the air for the vehicle software update is performed. In this case, when a new application wants to be installed in the current software platform, the requirements of the application must be checked and the new synthesis must be done to make sure that it does not violate the previous E/E configuration before the software update. This can be occurred while the car is charging during the night or in standing the parking slot. The synthesis can include aforementioned synthesis problems and other new problems.In case of new requirements which are not integrated into the system model, a new approach must be developed to integrate the new requirements and conditions into the previous system model after resynthesizing the E/E system of the car.
+    
+    The developed framework solely focused on the design phase for modeling and synthesizing car E/E systems. However, synthesizing E/E systems in real-time is both innovative and valuable. To achieve this objective, various perspectives and requirements must be considered. This concept becomes relevant during OTA updates for vehicle software. In this scenario, when a new application is installed on the current software platform, it is vital to check the application's requirements and perform a new synthesis to ensure it does not disrupt the existing E/E configuration before the software update. This process can occur while the car is charging overnight or parked in a designated slot. The synthesis may encompass the above-mentioned issues and potentially introduce new challenges. For cases where new requirements have not been integrated into the existing system model, a new approach must be devised to incorporate these new requirements and conditions into the previous system model before re-synthesizing the car's E/E system.
+    
+    \subsection{Uncertain Optimization}
+    %As described in Chapter~\ref{method}, to compute the reliability, constant failure rates of components, given by the user, are considered. However, in this thesis, the uncertainty in the failure rates have not been discussed. As a future work, bringing uncertainty to the reliability can be investigated. A range for each component's failure rate should be defined, including mean and standard deviation, and so based on that the reliability for each sample at a specific time can be computed. In this case, multiple configurations with various reliabilities can be generated with respect to other optimization goals such as cost, response time, end to end latency, etc using different uncertain optimization approaches such as robust and scenario-based optimizations. Moreover, the failure rate can be modeled by considering a particular failure rate for each failure mode.  
+    
+    As described in Chapter~\ref{method}, to compute reliability, constant failure rates of components provided by the user are considered. However, this thesis does not address the uncertainty in these failure rates. As a future endeavor, exploring the introduction of uncertainty into reliability calculations can be investigated. This would involve defining a range for each component's failure rate, including its mean and standard deviation. Based on this information, reliability for each sample at a specific time can be computed.
+    In this scenario, multiple configurations with varying reliabilities can be generated while considering other optimization goals such as cost, response time, end-to-end latency, etc., using different uncertain optimization approaches like robust and scenario-based optimizations. The failure rate can also be modeled by considering a specific failure rate for each failure mode.
+    
+    
+    
+    
+    
+    \subsection{Run-time Simulation}
+     %Another future work is testing and evaluating synthesized configurations using a simulated environment. In this thesis, the solutions, created by the \textit{E/E Designer}, were deployed on a real hardware platform in order to be assessed. However, having a simulation environment which is connected to the introduced tool, can visualize and analyze the design-time solutions in a better way in order to improve the usability of this framework. In addition, the difference between optimized and non-optimized solutions can be shown in the simulation, therefore, it can be presented that how an optimized solution affects on system's performance.   
+     
+     Another aspect of future work involves testing and evaluating synthesized configurations within a simulated environment. In this thesis, the solutions created by the E/E Designer framework were deployed on a real hardware platform for assessment. However, incorporating a simulation environment that is interconnected with the introduced tool enhances the visualization and analysis of design-time solutions, thereby improving the usability of this framework. Furthermore, the simulation can illustrate the differences between optimized and non-optimized solutions, presenting how an optimized solution impacts the system's performance.
+          
+    %\null
+    %\addtocounter{page}{1}
+    %\newpage
+    %\thispagestyle{empty}
+      %\afterpage{\newpage\thispagestyle{empty}}
+     %\afterpage{\null\thispagestyle{empty}\newpage}
+
+     
+     %ther words, developing an approach to make sure that created configuration is correct, optimized, and functionable on a real car E/E architecture. 
+    %\newpage
+    %\thispagestyle{empty}
+    %\mbox{}
+    %\newpage
